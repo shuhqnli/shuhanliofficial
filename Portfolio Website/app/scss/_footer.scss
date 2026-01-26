@@ -1,0 +1,79 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.footer {
+  background: $white;
+  color: $burgundy;
+  text-align: center;
+
+  @include breakpoint-up(large) {
+    display: grid;
+    grid-template-columns: 3fr 1.5fr;
+    grid-template-rows: 1fr auto;
+    grid-template-areas:
+      'logo contact'
+      'socials copyright';
+    // gap: 1rem;
+    justify-items: start;
+  }
+
+  &__logo {
+    display: inline-block;
+
+    @include breakpoint-down(medium) {
+      margin-bottom: 1rem;
+    }
+
+    @include breakpoint-up(large) {
+      grid-area: logo;
+    }
+
+    img {
+      height: 40px;
+    }
+
+  }
+
+  &__contact {
+
+    @include breakpoint-up(large) {
+      justify-self: end;
+      text-align: right;
+    }
+  }
+
+  &__copyright {
+    padding-top: 1rem;
+    
+    @include breakpoint-up(large) {
+      justify-self: end;
+      text-align: right;
+    }
+  }
+
+  &__socials {
+    a {
+      display: inline-block;
+      padding-right: 0.625rem;
+      padding-top: 0.625rem;
+    }
+    svg {
+      transition: all 300ms ease-in-out;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    @include breakpoint-down(medium) {
+      margin-bottom: 1rem;
+    }
+
+    @include breakpoint-up(large) {
+      grid-area: socials;
+      // align-self: flex-start;
+      // justify-content: left;
+    }
+  }
+
+}

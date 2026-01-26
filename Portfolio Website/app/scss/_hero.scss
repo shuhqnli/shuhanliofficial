@@ -1,0 +1,68 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.hero {
+
+  &__image {
+    position: relative;
+    background-image: url("/images/hero\ img.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 70% center;
+    min-height: 31.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 2rem;
+
+    @include breakpoint-up("large") {
+      min-height: calc(100vh - 60px);
+      align-items: flex-start;
+      justify-content: center;
+      padding-left: 6rem;
+      background-position: 80% 20%;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background-image: url("/images/horizontal logo white.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 4.0625rem;
+      height: clamp(4.0625rem, 2.6414473684210527rem + 3.552631578947368vw, 5.75rem);  
+      width: 15.389375rem;
+      width: clamp(15.389375rem, 9.927796052631578rem + 13.653947368421054vw, 21.875rem);
+      margin-bottom: 2rem;
+
+      @include breakpoint-up(large) {
+        // width: 21.875rem;
+        height: 5.75rem;
+        left: 7.5rem;  // match the padding-left of the container
+        bottom: auto;
+        top: 50%;
+        transform: translateY(-80%);
+      }
+    }
+  }
+
+  &__text {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 2rem;
+
+    @include breakpoint-up(large) {
+      margin-top: 8em;  // pushes button below the logo
+      padding-left: 1.5rem;
+    }
+  }
+}
