@@ -1,0 +1,166 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  nav {
+    position: relative;
+    z-index: 99999;
+    background-color: $burgundy;
+    padding: 0.5rem 1.5rem;
+    transition: all 300ms ease-in-out;
+  }
+
+  background: $burgundy;
+
+  &.open {
+    transition: all 300ms ease-in-out;
+
+    .header__toggle {
+      > span {
+        transition: all 300ms ease-in-out;
+        
+        &:first-child {
+          transform: rotate(45deg);
+        }
+        
+        &:nth-child(2) {
+          opacity: 0;
+        }
+        
+        &:last-child {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+
+    .header__menu {
+      transform: translateX(-50%) translateY(0);  // slide into view
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .overlay {
+    opacity: 0;
+    z-index: 1;
+    position: fixed;
+    top: 3.75rem;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    top: 0px;
+    background: hsla(0, 42%, 14%, 0.5);
+    backdrop-filter: blur(2px);
+  }
+
+  &__toggle {
+
+    >span {
+      display: block;
+      width: 1.875rem;
+      height: 1px;
+      background-color: $white;
+      transform-origin: 5px 0.5px;
+      transition: all 300ms ease-in-out;
+
+      &:not(:last-child) {
+        margin-bottom: 6px;
+      }
+    }
+  }
+
+  &__links {
+    margin-left: auto;
+
+    a {
+      color: white;
+      margin-right: 7.5rem;
+    }
+
+    a:hover {
+      opacity: 0.8;
+      transition: all 300ms ease-in-out;
+    }
+  }
+
+  &__socials {
+    svg {
+      transition: all 300ms ease-in-out;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    a {
+      &:not(:last-child) {
+        margin-right: 0.8rem;
+      }
+    }
+
+    &__resize {
+      svg {
+        height: 1rem;
+      }
+    }
+  }
+
+  &__menu {
+    position: absolute;
+    z-index: 9999;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100%);  // start off-screen above
+    opacity: 0;
+    background: $burgundy;
+    visibility: hidden;
+    transition: all 500ms ease;
+    padding: 1.625rem;
+    
+    a {
+      display: block;
+      padding: 0.625rem;
+      color: $white;
+      text-align: center;
+      transition: all 300ms ease-in-out;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    &__socials {
+      margin-top: 2rem;
+    }
+  }
+
+  &.static {
+    nav {
+      background-color: $white;
+      a {
+        color: $burgundy;
+      }
+    }
+
+    .header__toggle {
+      >span {
+        background-color: $burgundy;
+      }
+    }
+
+    svg {
+      fill: $burgundy;
+    }
+
+    // .header__menu {
+    //     background: $white;
+      
+    //   a {
+    //     color: $burgundy;
+    //   }
+    // }
+  }
+}

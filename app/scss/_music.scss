@@ -1,0 +1,56 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.music {
+  background: $tamarin;
+
+  h1 {
+    text-align: center;
+    margin-top: 0;
+  }
+
+  &__grid {
+    @include breakpoint-up(large) {
+      display: flex;
+      gap: 5rem;
+    }
+  }
+
+  &__item {
+    @include breakpoint-down(medium) {
+      &:not(:last-child) {
+        margin-bottom: 3rem;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 1/1;
+    }
+
+    @include breakpoint-up(large) {
+      flex: 1;
+      width: 21.875rem;
+      object-fit: cover;
+      margin: 0;
+    }
+  }
+
+  &__scroll {
+    text-align: center;
+    padding: 0;
+  }
+
+  &__title {
+    text-align: center;
+    padding: 1rem;
+  }
+
+  &__button {
+    align-items: center;
+    text-align: center;
+    margin: 1rem;
+  }
+}
