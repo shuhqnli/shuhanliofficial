@@ -4,12 +4,14 @@
   &__image {
     position: relative;
     overflow: hidden;
+    background: black;
     min-height: 31.25rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
     padding-bottom: 2rem;
+
     @include breakpoint-up("large") {
       min-height: calc(100vh - 60px);
       align-items: flex-start;
