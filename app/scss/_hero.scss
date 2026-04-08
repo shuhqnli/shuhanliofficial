@@ -99,7 +99,7 @@
       height: clamp(4.0625rem, 2.6414473684210527rem + 3.552631578947368vw, 5.75rem);
       width: clamp(15.389375rem, 9.927796052631578rem + 13.653947368421054vw, 21.875rem);
       margin-bottom: 2rem;
-      z-index: 999999999999999;
+      z-index: 2;
       @include breakpoint-up(large) {
         height: 5.75rem;
         left: 7.5rem;
@@ -116,7 +116,7 @@
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
-    z-index: 0;
+    z-index: 0 !important;
   }
   &__overlay {
     position: absolute;
