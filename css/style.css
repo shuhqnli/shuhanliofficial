@@ -1,0 +1,18 @@
+html {
+  font-size: 100%;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-family: "Aileron", sans-serif;
+  font-size: 30px;
+  letter-spacing: -0.6px;
+  color: black;
+}/*# sourceMappingURL=style.css.map */
