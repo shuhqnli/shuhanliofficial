@@ -39,6 +39,7 @@
       }
     }
   }
+
   &__video {
     position: absolute;
     top: 50%;
@@ -49,12 +50,14 @@
     object-fit: cover;
     z-index: 0;
   }
+
   &__overlay {
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.45);
     z-index: 1;
   }
+
   &__text {
     position: relative;
     z-index: 2;
