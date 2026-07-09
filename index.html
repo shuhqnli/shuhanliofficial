@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>shuhan li</title>
+  
+  <!-- Favicon - replace with your actual favicon file -->
+  <link rel="icon" type="image/png" href="/img/logo img red.png">
+  <link rel="apple-touch-icon" href="/img/logo img red.png">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
+  
+  <style>
+    @font-face {
+      font-family: 'Aileron';
+      src: local('Aileron'), local('Arial');
+      /* Replace with actual Aileron font file if you have it */
+      /* src: url('Aileron-Regular.woff2') format('woff2'); */
+    }
+    
+    :root {
+      --burgundy: #57131b;
+      --tamarind: #341515;
+      --cream: #FFF8E7;
+      --gold: #E1B281;
+      --thai-tea: #E6663D;
+      --black: #1A1A1A;
+      --white: #FFFFFF;
+      
+      --font-display: 'Times New Roman', Times, serif;
+      --font-body: 'Aileron', Arial, sans-serif;
+      --font-script: 'Pinyon Script', cursive;
+      
+      --letter-spacing-display: -0.085em;
+      --letter-spacing-body: -0.06em;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--black);
+      line-height: 1.0;
+      font-weight: 400;
+      letter-spacing: var(--letter-spacing-body);
+    }
+    
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s ease, padding 0.3s ease;
+    }
+    
+    .header.scrolled {
+      background: var(--burgundy);
+      padding: 1rem 3rem;
+    }
+    
+    .logo img {
+      height: 40px;
+      width: auto;
+    }
+    
+    .nav {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+    }
+    
+    .nav a {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: var(--letter-spacing-body);
+      text-transform: lowercase;
+      color: var(--cream);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    
+    .nav a:hover {
+      opacity: 0.7;
+    }
+    
+    .nav-social {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .nav-social a {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .nav-social svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--cream);
+      transition: opacity 0.2s;
+    }
+    
+    .nav-social a:hover svg {
+      opacity: 0.7;
+    }
+    
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--burgundy);
+    }
+    
+    .hero-image {
+      position: absolute;
+      inset: 0;
+    }
+    
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .hero-placeholder {
+      width: 100%;
+      height: 100%;
+      background: var(--burgundy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: lowercase;
+      opacity: 0.4;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 0 8%;
+      max-width: 700px;
+    }
+    
+    .hero-logo {
+      margin-bottom: 2rem;
+    }
+    
+    .hero-logo img {
+      height: clamp(80px, 12vw, 140px);
+      width: auto;
+    }
+    
+    .hero-tagline {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--cream);
+      opacity: 0.85;
+      letter-spacing: var(--letter-spacing-body);
+      margin-bottom: 2.5rem;
+      max-width: 380px;
+      line-height: 1.5;
+    }
+    
+    .btn-primary {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: var(--letter-spacing-body);
+      text-transform: lowercase;
+      color: var(--cream);
+      text-decoration: none;
+      padding: 1rem 2.5rem;
+      border: 1px solid var(--cream);
+      border-radius: 40px;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      background: var(--cream);
+      color: var(--burgundy);
+    }
+    
+    /* Music Section */
+    .music {
+      background: var(--cream);
+      padding: 8rem 8%;
+    }
+    
+    .section-header {
+      margin-bottom: 4rem;
+    }
+    
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      color: var(--burgundy);
+      letter-spacing: var(--letter-spacing-display);
+      margin-bottom: 0.75rem;
+      text-transform: lowercase;
+    }
+    
+    .section-subtitle {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--tamarind);
+      opacity: 0.7;
+      font-weight: 400;
+      letter-spacing: var(--letter-spacing-body);
+      line-height: 1.5;
+    }
+    
+    .music-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+    }
+    
+    .music-card {
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .music-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(87, 19, 27, 0.08);
+    }
+    
+    .music-card-image {
+      aspect-ratio: 1;
+      background: var(--burgundy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      text-transform: lowercase;
+    }
+    
+    .music-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .music-card-content {
+      padding: 1.5rem;
+    }
+    
+    .music-card-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--burgundy);
+      letter-spacing: var(--letter-spacing-display);
+      margin-bottom: 0.5rem;
+      text-transform: lowercase;
+    }
+    
+    .music-card-description {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--tamarind);
+      opacity: 0.7;
+      font-weight: 400;
+      font-style: italic;
+      margin-bottom: 1.25rem;
+      letter-spacing: var(--letter-spacing-body);
+      line-height: 1.4;
+    }
+    
+    .music-links {
+      display: flex;
+      gap: 0.75rem;
+    }
+    
+    .music-link {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: var(--letter-spacing-body);
+      text-transform: lowercase;
+      color: var(--burgundy);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--burgundy);
+      border-radius: 20px;
+      transition: all 0.2s ease;
+    }
+    
+    .music-link:hover {
+      background: var(--burgundy);
+      color: var(--cream);
+    }
+    
+    /* About Section */
+    .about {
+      background: var(--tamarind);
+      padding: 8rem 8%;
+    }
+    
+    .about-container {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .about-image {
+      aspect-ratio: 3/4;
+      background: var(--burgundy);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      text-transform: lowercase;
+      /* opacity: 0.4; */
+    }
+    
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .about-content {
+      color: var(--cream);
+    }
+    
+    .about .section-title {
+      color: var(--cream);
+    }
+    
+    .about-text {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.7;
+      font-weight: 400;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+      letter-spacing: var(--letter-spacing-body);
+    }
+    
+    .about-highlight {
+      font-family: var(--font-display);
+      font-style: italic;
+      color: var(--gold);
+      opacity: 1;
+    }
+    
+    .about-signature {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 248, 231, 0.15);
+    }
+    
+    .signature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      opacity: 0.7;
+      letter-spacing: var(--letter-spacing-body);
+    }
+    
+    .signature-item .star {
+      color: var(--gold);
+      font-size: 1rem;
+    }
+    
+    /* Contact Section */
+    .contact {
+      background: var(--cream);
+      padding: 8rem 8%;
+    }
+    
+    .contact-container {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .contact .section-title {
+      margin-bottom: 1.5rem;
+    }
+    
+    .contact-description {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--tamarind);
+      opacity: 0.8;
+      font-weight: 400;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+      letter-spacing: var(--letter-spacing-body);
+    }
+    
+    .contact-email {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--burgundy);
+      text-decoration: none;
+      display: inline-block;
+      border-bottom: 1px solid var(--burgundy);
+      padding-bottom: 0.25rem;
+      transition: opacity 0.2s;
+      letter-spacing: var(--letter-spacing-display);
+    }
+    
+    .contact-email:hover {
+      opacity: 0.7;
+    }
+    
+    /* Newsletter */
+    .newsletter {
+      background: var(--burgundy);
+      padding: 5rem 8%;
+      text-align: center;
+    }
+    
+    .newsletter-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 400;
+      color: var(--cream);
+      letter-spacing: var(--letter-spacing-display);
+      margin-bottom: 0.5rem;
+      text-transform: lowercase;
+    }
+    
+    .newsletter-subtitle {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--cream);
+      opacity: 0.7;
+      font-weight: 400;
+      margin-bottom: 2rem;
+      letter-spacing: var(--letter-spacing-body);
+    }
+    
+    .newsletter-form {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 450px;
+      margin: 0 auto;
+    }
+    
+    .newsletter-input {
+      flex: 1;
+      min-width: 240px;
+      padding: 1rem 1.5rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: var(--letter-spacing-body);
+      border: 1px solid rgba(255, 248, 231, 0.3);
+      border-radius: 40px;
+      background: transparent;
+      color: var(--cream);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    
+    .newsletter-input::placeholder {
+      color: var(--cream);
+      opacity: 0.5;
+    }
+    
+    .newsletter-input:focus {
+      border-color: var(--cream);
+    }
+    
+    .newsletter-btn {
+      padding: 1rem 2rem;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: var(--letter-spacing-body);
+      text-transform: lowercase;
+      color: var(--burgundy);
+      background: var(--cream);
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    
+    .newsletter-btn:hover {
+      opacity: 0.9;
+    }
+    
+    /* Footer */
+    .footer {
+      background: var(--burgundy);
+      padding: 3rem 8%;
+      border-top: 1px solid rgba(255, 248, 231, 0.1);
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    
+    .footer-logo img {
+      height: 30px;
+      width: auto;
+    }
+    
+    .footer-social {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .footer-social a {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .footer-social svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--cream);
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    
+    .footer-social a:hover svg {
+      opacity: 1;
+    }
+    
+    .footer-copy {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      color: var(--cream);
+      opacity: 0.5;
+      font-weight: 400;
+      letter-spacing: var(--letter-spacing-body);
+    }
+    
+    /* Mobile Responsive */
+    @media (max-width: 900px) {
+      .header {
+        padding: 1rem 1.5rem;
+      }
+      
+      .nav {
+        gap: 1.5rem;
+      }
+      
+      .nav-social {
+        display: none;
+      }
+      
+      .hero-content {
+        padding: 0 5%;
+      }
+      
+      .music, .about, .contact {
+        padding: 5rem 5%;
+      }
+      
+      .about-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      
+      .about-image {
+        max-width: 350px;
+        margin: 0 auto;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .about-signature {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .music-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero-tagline {
+        font-size: 0.95rem;
+      }
+    }
+    
+    /* Smooth scroll offset for fixed header */
+    section[id] {
+      scroll-margin-top: 80px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="logo">
+      <!-- Replace with your vertical SL logo (white version) -->
+      <img src="/img/logo img white.png" alt="SL">
+    </div>
+    <nav class="nav">
+      <a href="#music">music</a>
+      <a href="#about">about</a>
+      <a href="#contact">contact</a>
+      <div class="nav-social">
+        <a href="https://www.instagram.com/shuhqnli" target="_blank" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@shuhqnli" target="_blank" aria-label="TikTok">
+          <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+        </a>
+        <a href="https://open.spotify.com/artist/0o8c75CFugtkdlpWRjh7t8" target="_blank" aria-label="Spotify">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-image">
+      <img src="/img/hero.JPG">
+      <!-- <div class="hero-placeholder">replace with your photo</div> -->
+    </div>
+    <div class="hero-content">
+      <div class="hero-logo">
+        <!-- Replace with your horizontal "shuhan li" logo (white version with star) -->
+        <img src="/img/horizontal logo white.png" alt="shuhan li">
+      </div>
+      <p class="hero-tagline">singer-songwriter. <br> phildalphia / new york city / los angeles</p>
+      <a href="#music" class="btn-primary">listen</a>
+    </div>
+  </section>
+
+  <!-- Music Section -->
+  <section class="music" id="music">
+    <div class="section-header">
+      <h2 class="section-title">listen</h2>
+      <p class="section-subtitle">stream my music, out everywhere</p>
+    </div>
+    <div class="music-grid">
+      <div class="music-card">
+        <div class="music-card-image">
+          <img src="/img/french toast.jpeg" alt="french toast in the evening">
+        </div>
+        <div class="music-card-content">
+          <h3 class="music-card-title">french toast in the evening</h3>
+          <p class="music-card-description">June 12, 2026</p>
+          <div class="music-links">
+            <a href="https://open.spotify.com/album/5wz5JwZQRvKN2vs7q5Po7C?si=5PfwYCnTT8-sj5AlaZXwyg" target="_blank" class="music-link">spotify</a>
+            <a href="https://music.apple.com/us/album/french-toast-in-the-evening-feat-french-toast-ep/6779596421" target="_blank" class="music-link">apple</a>
+          </div>
+        </div>
+      </div>
+      <div class="music-card">
+        <div class="music-card-image">
+          <img src="/img/train station cover.png" alt="train station">
+        </div>
+        <div class="music-card-content">
+          <h3 class="music-card-title">train station</h3>
+          <p class="music-card-description">April 13, 2026</p>
+          <div class="music-links">
+            <a href="https://open.spotify.com/album/4TqbMPoibBP9hNDUQzcIMr?si=A9TloNQ1SOSS5JwT3D87xA" target="_blank" class="music-link">spotify</a>
+            <a href="https://music.apple.com/us/album/train-station-single/1892585481" target="_blank" class="music-link">apple</a>
+          </div>
+        </div>
+      </div>
+      <div class="music-card">
+        <div class="music-card-image">
+          <img src="/img/risk.JPG" alt="risk">
+        </div>
+        <div class="music-card-content">
+          <h3 class="music-card-title">risk</h3>
+          <p class="music-card-description">"December 22, 2025"</p>
+          <div class="music-links">
+            <a href="https://open.spotify.com/track/7CnA4sE7T9K2h0c52fLkIL?si=ab5ac6728d3d4fd3" target="_blank" class="music-link">spotify</a>
+            <a href="https://music.apple.com/us/album/risk-single/1863042861" target="_blank" class="music-link">apple</a>
+          </div>
+        </div>
+      </div>
+      <div class="music-card">
+        <div class="music-card-image">
+          <img src="/img/moon.JPG" alt="moon">
+        </div>
+        <div class="music-card-content">
+          <h3 class="music-card-title">moon</h3>
+          <p class="music-card-description">"November 18, 2025"</p>
+          <div class="music-links">
+            <a href="https://open.spotify.com/album/3SihBzLSnv03ZsYVr68cND?si=rdPOdkG-Rh2luP5V4Z9ihQ" target="_blank" class="music-link">spotify</a>
+            <a href="https://music.apple.com/us/album/moon-single/1853064096" target="_blank" class="music-link">apple</a>
+          </div>
+        </div>
+      </div>
+      <div class="music-card">
+        <div class="music-card-image">
+          <img src="/img/next to me.JPG" alt="next to me">
+        </div>
+        <div class="music-card-content">
+          <h3 class="music-card-title">next to me</h3>
+          <p class="music-card-description">"October 21, 2025"</p>
+          <div class="music-links">
+            <a href="https://open.spotify.com/album/29uTK4mhrdJZQNMyaxv3V7?si=5aB_I4kZT1qKro5CHmP9gg" target="_blank" class="music-link">spotify</a>
+            <a href="https://music.apple.com/us/album/next-to-me-single/1845880395" target="_blank" class="music-link">apple</a>
+          </div>
+        </div>
+      </div>
+      
+      
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="about-container">
+      <div class="about-image">
+        <img src="/img/about.JPG" alt="Shuhan Li in the studio, wearing a red jersey with a red guitar">
+      </div>
+      <div class="about-content">
+        <h2 class="section-title">about</h2>
+        <p class="about-text">
+          <span class="about-highlight">
+Shuhan Li is a singer-songwriter currently experimenting in sound. Classically trained with over a decade of piano and violin, she now writes songs around her own experiences and made-up stories.
+<br><br>
+Her debut singles “moon”, “risk”, and “train station” are out now.</span>
+        </p>
+        <p class="about-text">
+          songwriting has always been my favorite way to express myself and process what i’m going through. simultaneously, it’s been a unique opportunity for me to explore different perspectives and create stories surrounding bits and pieces of my everyday life.
+        </p>
+        <p class="about-text">
+          inspired by The 1975, Olivia Rodrigo, and a collection of other artists and songs that i listen to frequently, intentionality is the most important element of each thing i write. although i’m still at the beginning of my journey in music, i'm excited for what’s to come.     
+        </p>
+        <div class="about-signature">
+          <div class="signature-item">
+            <span class="star">✦</span>
+            <span>thai tea fanatic</span>
+          </div>
+          <!-- <div class="signature-item">
+            <span class="star">✦</span>
+            <span>for the romantics</span>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="contact-container">
+      <h2 class="section-title">say hi</h2>
+      <p class="contact-description">
+        for booking, press, collabs, or if you just want to talk about music and how you feel
+      </p>
+      <a href="mailto:shuhanli2016@gmail.com" class="contact-email">shuhanli2016@gmail.com</a>
+    </div>
+  </section>
+
+  <!-- Newsletter
+  <section class="newsletter">
+    <h3 class="newsletter-title">join the journey</h3>
+    <p class="newsletter-subtitle">new music, updates, the occasional ramble. you'll hear it first.</p>
+    <form class="newsletter-form">
+      <input type="email" class="newsletter-input" placeholder="your email" required>
+      <button type="submit" class="newsletter-btn">i'm in</button>
+    </form>
+  </section> -->
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <!-- Replace with your horizontal logo (white version) -->
+        <img src="/img/horizontal logo white.png" alt="shuhan li">
+      </div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/shuhqnli" target="_blank" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@shuhqnli" target="blank" aria-label="TikTok">
+          <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+        </a>
+        <a href="https://open.spotify.com/artist/0o8c75CFugtkdlpWRjh7t8" target="_blank" aria-label="Spotify">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@shuhanli" target="_blank" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+      <p class="footer-copy">© 2026 shuhan li. all rights reserved</p>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    const header = document.getElementById('header');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // // Newsletter form
+    // document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+    //   e.preventDefault();
+    //   const email = this.querySelector('input').value;
+    //   alert('you\'re in! welcome 🤍');
+    //   this.reset();
+    // });
+  </script>
+</body>
+</html>
