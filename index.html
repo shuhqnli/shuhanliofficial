@@ -400,6 +400,41 @@
       outline-offset: 2px;
     }
  
+    .heaven-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0 0.5rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      line-height: 1.4;
+      letter-spacing: var(--letter-spacing-body);
+      color: var(--cream);
+      cursor: pointer;
+    }
+ 
+    .heaven-check input {
+      flex: none;
+      width: 18px;
+      height: 18px;
+      margin-top: 0.1rem;
+      accent-color: var(--gold);
+      cursor: pointer;
+    }
+ 
+    .heaven-check input:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+ 
+    .heaven-check small {
+      display: block;
+      margin-top: 0.25rem;
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+ 
+    /* Honeypot: hidden from people, visible to bots */
     .heaven-trap {
       position: absolute;
       left: -9999px;
@@ -834,7 +869,7 @@
       <div class="hero-logo">
         <img src="/img/horizontal logo white.png" alt="shuhan li">
       </div>
-      <p class="hero-tagline">singer-songwriter. <br> phildalphia / new york city / los angeles</p>
+      <p class="hero-tagline">singer-songwriter. <br> phildalphia / new york city</p>
       <a href="#music" class="btn-primary">listen</a>
     </div>
   </section>
@@ -935,7 +970,7 @@
     <div class="heaven-container">
       <h2 class="section-title" id="heaven-question">what does heaven feel like?</h2>
       <p class="heaven-note">
-        all answers anonymous.
+        answer however you want. leave a number only if you'd like texts from me.
       </p>
  
       <form class="heaven-form" id="heaven-form" novalidate>
@@ -956,6 +991,14 @@
           placeholder="phone number (optional)"
           autocomplete="tel"
           maxlength="30">
+ 
+        <label class="heaven-check">
+          <input type="checkbox" name="optin" value="yes" id="heaven-optin">
+          <span>
+            yes, text me about new music and updates.
+            <small>msg &amp; data rates may apply. reply stop anytime to opt out.</small>
+          </span>
+        </label>
  
         <!-- honeypot -->
         <div class="heaven-trap" aria-hidden="true">
@@ -1081,7 +1124,8 @@ Her debut singles “moon”, “risk”, and “train station” are out now.</
     // });
 
     // Heaven form
-    const HEAVEN_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyr3ZPZJ39bJKeZbNYc15IJcQiWy4Oi37SjAizcduCLDmxy63ToHu9W5ry9AVYI6W7I8w/exec';
+    // Heaven form
+    const HEAVEN_ENDPOINT = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
  
     const heavenSection = document.getElementById('heaven');
     const heavenForm = document.getElementById('heaven-form');
@@ -1095,6 +1139,12 @@ Her debut singles “moon”, “risk”, and “train station” are out now.</
       if (!answer) {
         heavenStatus.textContent = 'write something first';
         heavenForm.answer.focus();
+        return;
+      }
+ 
+      if (heavenForm.optin.checked && !heavenForm.phone.value.trim()) {
+        heavenStatus.textContent = 'add your number so i can text you';
+        heavenForm.phone.focus();
         return;
       }
  
