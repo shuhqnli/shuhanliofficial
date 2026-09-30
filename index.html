@@ -327,6 +327,155 @@
       background: var(--burgundy);
       color: var(--cream);
     }
+
+    /*Form Section*/
+    .heaven {
+      background: var(--burgundy);
+      padding: 8rem 8%;
+    }
+ 
+    .heaven-container {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+ 
+    .heaven .section-title {
+      color: var(--cream);
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      margin-bottom: 1rem;
+    }
+ 
+    .heaven-note {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--cream);
+      opacity: 0.7;
+      line-height: 1.5;
+      letter-spacing: var(--letter-spacing-body);
+      margin-bottom: 2.5rem;
+    }
+ 
+    .heaven-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+ 
+    .heaven-field {
+      width: 100%;
+      padding: 1.1rem 1.5rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: var(--letter-spacing-body);
+      color: var(--cream);
+      background: transparent;
+      border: 1px solid rgba(255, 248, 231, 0.3);
+      border-radius: 24px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+ 
+    textarea.heaven-field {
+      min-height: 220px;
+      resize: vertical;
+    }
+ 
+    input.heaven-field {
+      border-radius: 40px;
+    }
+ 
+    .heaven-field::placeholder {
+      color: var(--cream);
+      opacity: 0.5;
+    }
+ 
+    .heaven-field:focus {
+      border-color: var(--cream);
+    }
+ 
+    .heaven-field:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+ 
+    .heaven-trap {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+ 
+    .heaven-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+ 
+    .heaven-btn {
+      padding: 1rem 2.5rem;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: var(--letter-spacing-body);
+      text-transform: lowercase;
+      color: var(--burgundy);
+      background: var(--cream);
+      border: 1px solid var(--cream);
+      border-radius: 40px;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease, opacity 0.2s;
+    }
+ 
+    .heaven-btn:hover {
+      background: transparent;
+      color: var(--cream);
+    }
+ 
+    .heaven-btn:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+ 
+    .heaven-btn:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+ 
+    .heaven-status {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: var(--gold);
+      letter-spacing: var(--letter-spacing-body);
+    }
+ 
+    /* Thank-you state replaces the form after a successful send */
+    .heaven-thanks {
+      display: none;
+      font-family: var(--font-body);
+      font-size: clamp(0.5rem, 5vw, 1rem);
+      color: var(--gold);
+      line-height: 1.3;
+    }
+ 
+    .heaven.sent .heaven-form,
+    .heaven.sent .heaven-note {
+      display: none;
+    }
+ 
+    .heaven.sent .heaven-thanks {
+      display: block;
+    }
+ 
+    @media (max-width: 900px) {
+      .heaven {
+        padding: 5rem 5%;
+      }
+    }
     
     /* About Section */
     .about {
@@ -781,6 +930,48 @@
     </div>
   </section>
 
+  <!-- Form Section -->
+   <section class="heaven" id="heaven">
+    <div class="heaven-container">
+      <h2 class="section-title" id="heaven-question">what does heaven feel like?</h2>
+      <p class="heaven-note">
+        all answers anonymous.
+      </p>
+ 
+      <form class="heaven-form" id="heaven-form" novalidate>
+        <textarea
+          class="heaven-field"
+          name="answer"
+          id="heaven-answer"
+          aria-labelledby="heaven-question"
+          placeholder="it feels like..."
+          maxlength="5000"
+          required></textarea>
+ 
+        <input
+          class="heaven-field"
+          type="tel"
+          name="phone"
+          aria-label="phone number (optional)"
+          placeholder="phone number (optional)"
+          autocomplete="tel"
+          maxlength="30">
+ 
+        <!-- honeypot -->
+        <div class="heaven-trap" aria-hidden="true">
+          <label>website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+ 
+        <div class="heaven-actions">
+          <button type="submit" class="heaven-btn" id="heaven-btn">send</button>
+          <span class="heaven-status" id="heaven-status" role="status" aria-live="polite"></span>
+        </div>
+      </form>
+ 
+      <p class="heaven-thanks" id="heaven-thanks">thank you for sharing ✦</p>
+    </div>
+  </section>
+
   <!-- About Section -->
   <section class="about" id="about">
     <div class="about-container">
@@ -888,6 +1079,44 @@ Her debut singles “moon”, “risk”, and “train station” are out now.</
     //   alert('you\'re in! welcome 🤍');
     //   this.reset();
     // });
+
+    // Heaven form
+    const HEAVEN_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyr3ZPZJ39bJKeZbNYc15IJcQiWy4Oi37SjAizcduCLDmxy63ToHu9W5ry9AVYI6W7I8w/exec';
+ 
+    const heavenSection = document.getElementById('heaven');
+    const heavenForm = document.getElementById('heaven-form');
+    const heavenBtn = document.getElementById('heaven-btn');
+    const heavenStatus = document.getElementById('heaven-status');
+ 
+    heavenForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+ 
+      const answer = heavenForm.answer.value.trim();
+      if (!answer) {
+        heavenStatus.textContent = 'write something first';
+        heavenForm.answer.focus();
+        return;
+      }
+ 
+      heavenBtn.disabled = true;
+      heavenStatus.textContent = 'sending...';
+ 
+      try {
+        // no-cors: the request goes through, but the response is unreadable.
+        // A network failure still throws, so the catch below handles that.
+        await fetch(HEAVEN_ENDPOINT, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: new URLSearchParams(new FormData(heavenForm))
+        });
+        heavenForm.reset();
+        heavenStatus.textContent = '';
+        heavenSection.classList.add('sent');
+      } catch (err) {
+        heavenBtn.disabled = false;
+        heavenStatus.textContent = "didn't send. check your connection and try again";
+      }
+    });
   </script>
 </body>
 </html>
