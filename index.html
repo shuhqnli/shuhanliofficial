@@ -1141,12 +1141,6 @@ Her debut singles “moon”, “risk”, and “train station” are out now.</
         return;
       }
  
-      if (heavenForm.optin.checked && !heavenForm.phone.value.trim()) {
-        heavenStatus.textContent = 'add your number so i can text you';
-        heavenForm.phone.focus();
-        return;
-      }
- 
       heavenBtn.disabled = true;
       heavenStatus.textContent = 'sending...';
  
